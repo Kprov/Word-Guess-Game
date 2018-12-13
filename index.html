@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap File -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <title>Word Guess Game</title>
+</head>
+<body>
+ <div class="container" id="body-container">
+ 
+    <header>
+        <div class="jumbotron text-center" id=game-title>
+            <h1 class=title>Rock n' Roll Hangman</h1>
+            <h2 class=instructions> Preess any letter to begin playing!</h2>
+        </div>
+    </header>
+
+    <section class="main-section">
+        <div class="row text-center">
+            <div class="col text-left">Guess the band: <span id=bandGuess></span></div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <div class=current-guesses>Letters Guessed: </div>
+                <div class=remaining-guesses>Guesses Remaining: </div>
+            </div>
+            <div class="col text-center">
+                <div id=wins>Wins: </div>
+                <div id=losses>Losses: </div>
+            </div>
+
+        </div>
+    </section>
+
+
+ </div>
+    
+</body>
