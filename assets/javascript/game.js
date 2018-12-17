@@ -13,28 +13,32 @@ for (var i = 0; i < computerGuess.length; i++) {
     console.log(underscoreArray); 
   document.getElementById("bandGuess").innerHTML = underscoreArray.join(" ");
 
-//runs function when user releases a key
+
 var splitWord = computerGuess.split("");
   console.log(splitWord)
 var guessedLetters = [];
 var letterMatch = false;
 var correctLetters = 0;
 
+//runs function when user releases a key
 document.onkeyup = function(event) {
     var userGuess = event.key;
     console.log("user guess: " + userGuess)
     guessedLetters.push(userGuess);
+    console.log(guessedLetters) //verifying user guesses being pushed into guessedLetters array
     document.getElementById("lettersGuessedSpan").innerhtml = guessedLetters.join(" ");
-        console.log("this is added to the array: " + guessedLetters)
+    for (k=0; k < splitWord.length; k++) {
+        if (splitWord[k] === userGuess){
+            underscoreArray[k] = userGuess;
+            letterMatch = true;
+            correctLetters++;
+            console.log("correct letters: " + correctLetters)
+        }
+    } 
+    document.getElementById("bandGuess").innerHTML = underscoreArray.join(" "); 
+    console.log("underscoreArray: " + underscoreArray);  
 }
-for (j=0; j < splitWord.length; j++) {
-    if (splitWord[j] === userGuess){
-        underscoreArray[j] = userGuess;
-        letterMatch = true;
-        correctLetters++;
-        console.log("correct letters: " + correctLetters)
-    }
-}
+
     
     
 
