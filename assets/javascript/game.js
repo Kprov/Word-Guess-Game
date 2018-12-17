@@ -17,13 +17,22 @@ for (var i = 0; i < computerGuess.length; i++) {
 var splitWord = computerGuess.split("");
   console.log(splitWord)
 var guessedLetters = [];
+var letterMatch = false;
+var correctLetters = 0;
 
 document.onkeyup = function(event) {
     var userGuess = event.key;
     console.log("user guess: " + userGuess)
-    if (guessedLetters.indexOf(userGuess) >=0){
-        guessedLetters.push(userGuess);
-        document.getElementById("currentguesses").innerhtml = guessedletters.join(" ");
+    guessedLetters.push(userGuess);
+    document.getElementById("lettersGuessedSpan").innerhtml = guessedLetters.join(" ");
+        console.log("this is added to the array: " + guessedLetters)
+}
+for (j=0; j < splitWord.length; j++) {
+    if (splitWord[j] === userGuess){
+        underscoreArray[j] = userGuess;
+        letterMatch = true;
+        correctLetters++;
+        console.log("correct letters: " + correctLetters)
     }
 }
     
