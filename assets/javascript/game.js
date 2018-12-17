@@ -9,7 +9,7 @@ console.log("this is the computer's word: " + computerGuess);
 var underscoreArray = []; 
 for (var i = 0; i < computerGuess.length; i++) { 
     underscoreArray.push("_"); 
-    }                               //how to remove from _ from spaces??
+    }                               //how to remove _ from spaces??
     console.log(underscoreArray); 
   document.getElementById("bandGuess").innerHTML = underscoreArray.join(" ");
 
@@ -19,6 +19,8 @@ var splitWord = computerGuess.split("");
 var guessedLetters = [];
 var letterMatch = false;
 var correctLetters = 0;
+var wordLength = splitWord.length;
+var guessesLeft = 10
 
 //runs function when user releases a key
 document.onkeyup = function(event) {
@@ -26,7 +28,7 @@ document.onkeyup = function(event) {
     console.log("user guess: " + userGuess)
     guessedLetters.push(userGuess);
     console.log(guessedLetters) //verifying user guesses being pushed into guessedLetters array
-    document.getElementById("lettersGuessedSpan").innerhtml = guessedLetters.join(" ");
+    document.getElementById("guesses").innerHTML = guessedLetters.join(" ");
     for (k=0; k < splitWord.length; k++) {
         if (splitWord[k] === userGuess){
             underscoreArray[k] = userGuess;
@@ -36,7 +38,19 @@ document.onkeyup = function(event) {
         }
     } 
     document.getElementById("bandGuess").innerHTML = underscoreArray.join(" "); 
-    console.log("underscoreArray: " + underscoreArray);  
+    console.log("underscoreArray: " + underscoreArray); 
+    
+    if(letterMatch) {
+        if(wordLength === correctLetters) {
+            wins++;
+            document.getElementById("wins").innerHTML = ("Wins: " + wins);
+        }
+    }
+    else if (!guessesLeft){
+        losses++;
+    }
+    guessesLeft--;
+        document.getElementById("guesses").innerHTML = guessesLeft.join("guesses");
 }
 
     
@@ -59,7 +73,12 @@ newLossesText = document.createTextNode(" " + losses);
 newLossesElement.appendChild(newLossesText);
 document.getElementById("losses").append(newLossesElement);
 
-// //starting remaining guesses at 10 and dropping by 1 for each letter guessed
+//starting remaining guesses at 10 and dropping by 1 for each letter guessed
+
+guessElement = document.createElement("span");
+guessText = document.createTextNode(" " + guessesLeft);
+guessElement.appendChild(guessText);
+document.getElementById("guesses").append(guessElement);
 
 // var remainingGuesses = 10;
 // newRemainingGuesses = document.createElement("span");
