@@ -43,14 +43,62 @@ function startGame () {
     console.log(blanksAndSuccesses) //Testing push of blank spaces into array 
 }   
 
-function findMatch() { //Checking if user guess letter matches with letter in computer guess word 
+function findMatch(letter) { //Checking if user guess letter matches with letter in computer guess word 
     var ifMatch = false;
     for (var i=0; i<numBlanks; i++) {
         if (selectedWord[i] === letter) {
             ifMatch = true;
+            console.log("letter found") //Checking if letter match operates correctly
         }
     }
+
+    // Finding location of matched letter and populating HTML
+    
+    if (ifMatch) {
+        for (var i=0; i<numBlanks; i++) {
+            if (selectedWord[i] === letter) {
+                blanksAndSuccesses[i] = letter;
+            }
+        }
+    }
+    else {
+        wrongLetters.push(letter);
+        guessesLeft--
+    }
+
+    console.log(blanksAndSuccesses) //Verifying the correct letter being placed into the blanks and successes array
+    
 }
+//User win or loss alert and update to HTML
+function roundCompleted(){
+    console.log("Win Count: " + winCount + "| Loss Cunt: " + lossCount + "| Guesses Left: " + guessesLeft)
+    
+    document.getElementById("remGuesses").innerHTML = guessesLeft; //Deducting number of guesses after wrong guess
+    document.getElementById("bandGuess").innerHTML = blanksAndSuccesses.join(" "); //joining correct letter guesses to html
+    document.getElementById("guesses").innerHTML = wrongLetters.join(" "); //joining wrong letters guessed to html
+
+    if (lettersInWord.toString() == blanksAndSuccesses.toString()) {
+    winCount++;
+    alert("You Win!");
+
+    document.getElementById("wins").innerHTML = winCount;
+
+    startGame();
+    }
+    else if (guessesLeft == 0) {
+    lossCount++;
+    alert("You Lost!")
+
+    document.getElementById("losses").innerHTML = lossCount;
+
+    startGame();
+    }
+}
+
+
+
+
+ 
 
 //Main Proccessing
 //========================================================================
@@ -61,6 +109,7 @@ startGame ();
 document.onkeyup = function(event) {
     letterGuessed = String.fromCharCode(event.keyCode).toLowerCase(); //Returning a string created from the user guesses (tied to specified UTF) and converting the choices to lower case
     findMatch (letterGuessed);
+    roundCompleted();
     console.log(letterGuessed);
 }
 
