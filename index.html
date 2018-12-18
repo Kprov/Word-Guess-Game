@@ -19,14 +19,21 @@
         </div>
     </header>
 
-    <section class="main-section">
-        <div class="row text-center">
-            <div class="col text-left">Guess the band: <span id=bandGuess></span></div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"> Guess The Band!</h3>
         </div>
+        <div class=panel-body>
+            <h2 id=bandGuess></h2>
+        </div>
+
+    </div>
+
+    <section class="main-section">
         <div class="row">
             <div class="col text-center">
-                <div class=current-guesses>Letters Guessed:  </div>
-                <div class=remaining-guesses id=guesses>Guesses Remaining: </div>
+                <div class=current-guesses>Letters Guessed: <span id=guesses></span> </div>
+                <div class=remaining-guesses>Guesses Remaining: <span id=remGuesses></span> </div>
             </div>
             <div class="col text-center">
                 <div id=wins>Wins: </div>

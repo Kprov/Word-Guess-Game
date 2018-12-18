@@ -27,7 +27,7 @@ document.onkeyup = function(event) {
     var userGuess = event.key;
     console.log("user guess: " + userGuess)
     guessedLetters.push(userGuess);
-    console.log(guessedLetters) //verifying user guesses being pushed into guessedLetters array
+    console.log(guessedLetters) //verifying userGuess being pushed into guessedLetters array
     document.getElementById("guesses").innerHTML = guessedLetters.join(" ");
     for (k=0; k < splitWord.length; k++) {
         if (splitWord[k] === userGuess){
@@ -50,7 +50,7 @@ document.onkeyup = function(event) {
         losses++;
     }
     guessesLeft--;
-        document.getElementById("guesses").innerHTML = guessesLeft.join("guesses");
+        document.getElementById("guesses").innerHTML = guessesLeft.join(" ");
 }
 
     
