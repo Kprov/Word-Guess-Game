@@ -6,6 +6,7 @@ var lettersInWord = [];
 var numBlanks = 0;
 var blanksAndSuccesses = [];
 var wrongLetters = [];
+var letterGuessed;
 
 var winCount = 0;
 var lossCount = 0;
@@ -31,7 +32,10 @@ function startGame () {
     }
 
     //Adding to HTML
-    document.getElementById("bandGuess").innerHTML = blanksAndSuccesses.join("  ");
+    document.getElementById("bandGuess").innerHTML = blanksAndSuccesses.join("  "); //Adding blanks to HTML
+    document.getElementById("remGuesses").innerHTML = guessesLeft; //Adding guesses remaining to HTML
+    document.getElementById("wins").innerHTML = winCount; //Adding winCount to HTML
+    document.getElementById("losses").innerHTML = lossCount; //Adding lossCount to HTML
 
     console.log(selectedWord) // Testing random word selection
     console.log(lettersInWord) // Testing splitting letters in word
@@ -39,13 +43,31 @@ function startGame () {
     console.log(blanksAndSuccesses) //Testing push of blank spaces into array 
 }   
 
+function findMatch() { //Checking if user guess letter matches with letter in computer guess word 
+    var ifMatch = false;
+    for (var i=0; i<numBlanks; i++) {
+        if (selectedWord[i] === letter) {
+            ifMatch = true;
+        }
+    }
+}
+
 //Main Proccessing
 //========================================================================
 startGame ();
 
+//Function for user key press
+
+document.onkeyup = function(event) {
+    letterGuessed = String.fromCharCode(event.keyCode).toLowerCase(); //Returning a string created from the user guesses (tied to specified UTF) and converting the choices to lower case
+    findMatch (letterGuessed);
+    console.log(letterGuessed);
+}
 
 
 
+//OLD CODE
+//===========================================================================
 // // word generation
 // var computerGuess = bandIndex[Math.floor(Math.random() * bandIndex.length)];
 // console.log("this is the computer's word: " + computerGuess);
